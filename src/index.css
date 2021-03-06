@@ -7,7 +7,86 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* MOBILE */
+html{
+  font-size:14px;
+}
+/* TABLET */
+@media only screen and (min-width: 480px) {
+  html{
+      font-size:16px;
+  }
+}
+/* DESKTOP */
+@media only screen and (min-width: 768px) {
+  html{
+      font-size:18px;
+  }
+}
+/* X-LARGE */
+@media only screen and (min-width: 1024px) {
+  html{
+      font-size:20px;
+  }
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+canvas{border: 1px solid #000;}
+/* body{background-color:#ebebeb; cursor:crosshair;} */
+#buttons {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+#reset {
+  margin-top: 10px;
+  margin-left: 5px;
+  float: left;
+}
+.color {
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin-top: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  border: 1px solid #000;
+  text-align: center;
+}
+#red {
+  background-color: red;
+}
+#blue {
+  background-color: blue;
+}
+#green {
+  background-color: green;
+}
+#purple {
+  background-color: purple;
+}
+#yellow {
+  background-color: yellow;
+}
+#orange {
+  background-color: orange;
+}
+#pink {
+  background-color: pink;
+}
+#black {
+  background-color: black;
+}
+#white {
+ background-color: white;
+}
+
+.drawing-panel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

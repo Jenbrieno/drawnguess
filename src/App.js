@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import pickColors from './Colors';
+import Colors from './Colors';
+import Tools from './Tools';
+import { SketchPicker } from 'react-color';
 import './App.css';
+
 
 
 function App() {
@@ -10,7 +13,9 @@ function App() {
   const [drawing, setDrawing] = useState(false);
   const [position, setPosition] = useState ({x:0,y:0});
   const [canvasOffset, setCanvasOffset] = useState ({x:0,y:0});
-
+  const [tool, setTool] = useState('pen')
+  const [strokeColor, setStrokeColor] = useState ()
+ 
   useEffect(()=>{
     const canvas = canvasRef.current;  
     const cavctx = canvas.getContext("2d");
@@ -18,7 +23,12 @@ function App() {
     canvas.height = parentRef.current.offsetHeight;
     cavctx.lineCap = "round";
     cavctx.lineWidth = 2;
+    cavctx.scale(2,2)
     setContext(cavctx);
+    document.getElementById('clear').addEventListener('click', function() {
+    cavctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
     let offset = canvas.getBoundingClientRect();
     setCanvasOffset({ x: parseInt(offset.left), y: parseInt(offset.top) });
   },[]);
@@ -29,7 +39,6 @@ function App() {
       x: parseInt(e.clientX - canvasOffset.x),
       y: parseInt(e.clientY - canvasOffset.y),
     });
-
   }
 
   function endDrawing() {
@@ -40,19 +49,34 @@ function App() {
     const mouseX = e.clientX - canvasOffset.x;
     const mouseY = e.clientY - canvasOffset.y;
     if (drawing) {
-      context.strokeStyle = 'black';
-      context.beginPath();
-      context.moveTo(position.x, position.y);
-      context.lineTo(mouseX,mouseY);
-      context.stroke();
+      if (tool === 'pen'){
+        context.strokeStyle = 'black';
+        context.beginPath();
+        context.moveTo(position.x, position.y);
+        context.lineTo(mouseX,mouseY);
+        context.stroke();
+    } else {
+        setTool ('eraser')  
+        context.strokeStyle = 'white';
+        context.beginPath();
+        context.moveTo(position.x, position.y);
+        context.lineTo(mouseX,mouseY);
+        context.stroke();
     }
+  }
     setPosition({x:mouseX, y:mouseY});
   }
-
+  
+  
 
   return (
-    <header className='header' ref={parentRef}>
-      <pickColors />
+    
+    <div className='container' ref={parentRef}>
+      
+      <div className='colorPalette'>
+        <Colors />
+      </div>
+   
       <canvas
         onMouseDown={startDrawing}
         onMouseUp={endDrawing}
@@ -60,8 +84,12 @@ function App() {
         ref={canvasRef}
       />
 
+      <div className='tools'>
+        <Tools />
 
-    </header>
+      </div>
+   
+    </div>
 
   );
 }

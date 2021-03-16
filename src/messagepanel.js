@@ -2,8 +2,7 @@
 
 function sendMessage(){
     return (
-        <div className = 'chat'>
-        </div>
+        <div className = 'chat'> </div>
     );
    
 }

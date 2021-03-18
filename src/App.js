@@ -14,7 +14,7 @@ function App() {
   const [position, setPosition] = useState ({x:0,y:0});
   const [canvasOffset, setCanvasOffset] = useState ({x:0,y:0});
   const [tool, setTool] = useState('pen')
-  const [strokeColor, setStrokeColor] = useState ()
+  const [strokeColor, setStrokeColor] = useState ('black')
 
  
   useEffect(()=>{
@@ -51,7 +51,7 @@ function App() {
     const mouseY = e.clientY - canvasOffset.y;
     if (drawing) {
       if (tool === 'pen'){
-        context.strokeStyle = 'black';
+        context.strokeStyle = strokeColor;
         context.beginPath();
         context.moveTo(position.x, position.y);
         context.lineTo(mouseX,mouseY);
@@ -70,12 +70,15 @@ function App() {
   
 
   return (
-    
+  
     <div className='container' ref={parentRef}>
-      
+
+
       <div className='colorPalette'>
-        <Colors />
+        <Colors setStrokeColor={setStrokeColor}
+        setTool={setTool}/>
       </div>
+
    
       <canvas
         onMouseDown={startDrawing}
@@ -84,14 +87,16 @@ function App() {
         ref={canvasRef}
       />
 
+
       <div className='tools' >
 
-        <Tools setTool={setTool}/>
-
+        <Tools setStrokeColor={setStrokeColor}
+        setTool={setTool}/>
 
       </div>
    
     </div>
+
 
   );
 }

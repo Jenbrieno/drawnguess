@@ -10,8 +10,8 @@
     flex-direction:row-reverse;
     justify-content: center;
     background-color: rgba(235, 234, 234, 1);
-
 }
+
 
 
 canvas{
@@ -22,11 +22,6 @@ canvas{
     height:50%;
     margin-top: 20vh;
     border-radius: 5px ;
-
-    /* display: flex;
-    align-items: center;
-    justify-content: flex-end; */
-
   }
 
 
@@ -40,6 +35,7 @@ canvas{
     background-color: rgb(249, 197, 67);
     cursor: pointer;
     text-align: center;
+    position:relative;
 }
 
 .tools {
@@ -55,6 +51,7 @@ canvas{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+   
 }
 
 .tool {
@@ -62,7 +59,7 @@ canvas{
     height: 60px;
     margin-top: 20px;
     border-radius: 100%;
-    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.5);  
+    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.5); 
 }
 
 .tool:hover{
@@ -76,6 +73,7 @@ canvas{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    position: relative;
 }
 
 .color {
@@ -83,7 +81,8 @@ canvas{
     height: 40px;
     margin-top: 20px;
     border-radius: 100%;
-    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.5);  
+    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.5); 
+    position:relative; 
 }
 
 
@@ -107,8 +106,8 @@ canvas{
     background-color:gold ;
 }
 
-#black {
-    background-color: black;
+#purple {
+    background-color: purple;
 }
 
 #white{
